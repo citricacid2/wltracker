@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.scss'
 import { useState } from 'react'
+import { Line } from 'react-chartjs-2'
 
 
 export default function Home() {
@@ -84,6 +85,15 @@ export default function Home() {
         <div className="column is-half is-full-mobile">
           <div className="box">
             <h2 className="subtitle">Chart</h2>
+            <Line data={{
+              labels: data.map(item => item.month + '/' + item.day),
+              datasets: [
+                {
+                  label: 'Weight',
+                  data: data.map(item => item.weight - data[0].weight),
+                }
+              ]
+            }}/>
           </div>
         </div>
       </div>
